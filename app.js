@@ -1,3 +1,4 @@
+// DOM Variables
 const addedText = document.getElementById('add-text');
 const addedPriority = document.getElementById('add-priority');
 const form = document.getElementById('form');
@@ -5,7 +6,8 @@ const showList = document.getElementById('show-list');
 const doneList = document.getElementById('done-list');
 const unfinishedLabel = document.getElementById('unfinished-label');
 const completeLabel = document.getElementById('complete-label');
-
+const sortWrapperBtn = document.getElementById('btn-wrapper');
+// Array Variables
 let lowPriority = [];
 let medPriority = [];
 let highPriority = [];
@@ -56,10 +58,13 @@ let array = [
     }
 ];
 
+// Start Functions
 renderList();
 updateLables();
 renderDoneList();
 
+
+// Event Listeners
 form.addEventListener('submit', function (e) {
     e.preventDefault();
     addedText.value.length > 1 ? init() : null;
@@ -68,6 +73,7 @@ form.addEventListener('submit', function (e) {
 function init() {
     createItem();
     renderList();
+    updateLables();
 }
 
 function createItem() {
@@ -202,6 +208,11 @@ function updateLables() {
     } else if (completedArray.length > 0) {
         completeLabel.setAttribute("style", "display: flex");
     }
+    if (array.length == 0) {
+        sortWrapperBtn.classList.add("hidden");
+    } else if (array.length > 0) {
+        sortWrapperBtn.classList.remove("hidden");
+    }
 }
 
 function clearCompletedArray() {
@@ -209,3 +220,10 @@ function clearCompletedArray() {
     renderDoneList();
     updateLables();
 }
+
+
+const toggle = document.getElementById('toggle');
+toggle.addEventListener('click', () => {
+    let nav = document.getElementById("nav");
+    nav.classList.toggle('show-nav');
+});

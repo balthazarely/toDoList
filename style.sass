@@ -1,5 +1,14 @@
 @import url('https://fonts.googleapis.com/css?family=Work+Sans:400,700&display=swap')
 
+// Variables
+$color-white: #ffffff
+$color-very-light: #E4F9F5
+$color-light: #2fe3ca
+$color-error2: #e6c718
+$color-error: #e3802f
+$color-dark: #0E999E
+$color-black: #40514E
+
 body
     display: flex
     justify-content: center
@@ -7,8 +16,9 @@ body
     flex-direction: column
     height: 100vh
     width: 100vw
-    background: #f2f2f2
+    background: $color-dark
     font-family: 'Work Sans', sans-serif
+    transition: .5s
 
 #main-container
     display: flex
@@ -17,6 +27,22 @@ body
     flex-direction: column
     width: 100wv
     height: 80vh
+    position: relative
+
+#head-container
+    width: 500px
+    background: white
+    height: 60px
+    border-top-left-radius: 25px
+    border-top-right-radius: 25px
+    justify-content: center
+    align-items: center
+    display: flex
+
+#head
+    display: flex
+    color: $color-dark
+    font-size: 28px
 
 #container
     width: 500px
@@ -26,6 +52,9 @@ body
     justify-content: flex-start
     align-items: center
     flex-direction: column
+    position: relative
+    border-bottom-left-radius: 25px
+    border-bottom-right-radius: 25px
 
 #form
     margin: 20px auto
@@ -33,14 +62,45 @@ body
     display: flex
     justify-content: space-between
 
+input[type=text]
+    outline: none
+
+.select
+    font-family: 'Work Sans', sans-serif
+    outline: none
+
 #add-btn
     width: 100px
     height: 20px
+    color: $color-white
+    background: $color-dark
+    font-weight: 700
+    border: none
+    outline: none
+    &:hover
+        background: darken($color-dark, 10% )
 
-.btn-wrapper
-    width: 350px
+#btn-wrapper
+    position: absolute
+    left: 0px
+    top: 90px
     display: flex
+    flex-direction: column
+    align-items: center
     justify-content: space-around
+    width: 70px
+    height: 100px
+
+.sort-btn
+    border-radius: 50%
+    width: 35px
+    height: 35px
+    color: white
+    border: none
+    outline: none
+    background: $color-dark
+    &:hover
+        background: darken($color-dark, 10% )
 
 #show-container
     width: 350px
@@ -57,6 +117,7 @@ body
 
 .container-label
     font-size: 14px
+    font-weight: 700
     border-bottom: 1px solid black
     display: flex
     justify-content: space-between
@@ -65,8 +126,14 @@ body
 .clear-completed-btn
     position: absolute
     right: 0px
-    width: 100px
-    height: 10px
+    width: 50px
+    height: 25px
+    background: $color-dark
+    color: white
+    border: none
+    outline: none
+    &:hover
+        background: darken($color-dark, 10% )
 
 #unfinished-label
     // position: absolute
@@ -84,7 +151,7 @@ body
     margin-bottom: 40px
 
 #show-list li
-    background-color: #fff
+    background-color: $color-white
     box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.2)
     color: #333
     display: flex
@@ -95,7 +162,7 @@ body
     margin: 5px 0
 
 #done-list li
-    background-color: #fff
+    background-color: $color-white
     box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.2)
     color: #333
     display: flex
@@ -128,11 +195,11 @@ input[type="text"]
     text-transform: uppercase
 
 .low-priority
-    color: green
+    color: $color-dark
 .med-priority
-    color: orange
+    color: $color-error2
 .high-priority
-    color: red
+    color: $color-error
 
 .delete-btn
     opacity: 0
@@ -140,7 +207,7 @@ input[type="text"]
     top: -10px
     right: -10px
     color: white
-    background: red
+    background: $color-error
     border-radius: 50%
     width: 20px
     height: 20px
@@ -151,7 +218,6 @@ input[type="text"]
     cursor: pointer
     font-weight: 900
     font-size: 10px
-    transition: .3s
     border: none
     outline: none
     &:hover
@@ -164,7 +230,7 @@ input[type="text"]
     top: -10px
     left: -10px
     color: white
-    background: green
+    background: $color-dark
     border-radius: 50%
     width: 20px
     height: 20px
@@ -175,9 +241,8 @@ input[type="text"]
     cursor: pointer
     font-weight: 900
     font-size: 10px
-    transition: .3s
     border: none
-    outline: noneß
+    outline: none
     &:hover
         box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.2)
         transform: scale(1.2)
@@ -192,3 +257,43 @@ input[type="text"]
     cursor: pointer
     &:hover
         background: darken(#F08A5C, 20% )
+
+.hidden
+    visibility: hidden
+
+.show-nav
+    transform: translateX(150px)
+    transition: .5s
+
+nav
+    border-right: 2px solid rgba(200, 200, 200, 0.1)
+    color: #fff
+    position: fixed
+    top: 60px
+    left: 0
+    width: 200px
+    height: 100vh
+    z-index: 100
+    transform: translateX(-100%)
+
+.nav-header
+    magin: 10px
+
+nav li
+    font-size: 14px
+    margin: 12px 0px
+
+.questions
+    position: absolute
+    top: -50px
+    right: -50px
+
+#question-icon
+    width: 30px
+    height: 30px
+    border-radius: 50%
+    border: 2px solid $color-dark
+    &:hover
+        background: white
+        border: 2px solid $color-light
+        transform: scale(1.2)
